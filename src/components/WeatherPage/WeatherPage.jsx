@@ -1,0 +1,28 @@
+// Реализуйте страницу, отражающую сведения о текущей погоде
+
+// Ваш API погоды доступен по следующей ссылке:
+// https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true
+
+// Обязательные условия:
+// 1) Загрузка списка через useQuery
+// 2) Поиск погоды со стороны пользователя через координаты
+// 3) Поиск погоды со стороны пользователя по названию города
+
+// Для получения координат города, отправляйте запрос следующего типа:
+// https://geocoding-api.open-meteo.com/v1/search?name=Киев&count=1&language=ru&format=json
+
+// В параметре name, указывайте название города.
+
+import { useWeatherPage } from './hooks/useWeatherPage';
+import './WeatherPage.css'
+
+export default function WeatherPage()
+{
+    const {city, coordinates, weather, setCity} = useWeatherPage();
+
+
+
+    return(
+        <input type="text" onChange={e => setCity(e.target.value)} value={city} />
+    )
+}
