@@ -13,16 +13,23 @@
 
 // В параметре name, указывайте название города.
 
-import { useWeatherPage } from './hooks/useWeatherPage';
 import './WeatherPage.css'
+
+import { useWeatherPage } from './hooks/useWeatherPage';
+
+import InputField from './ui/InputField/InputField';
+import WeatherInfo from './ui/WeatherInfo/WeatherInfo';
 
 export default function WeatherPage()
 {
-    const {city, coordinates, weather, setCity} = useWeatherPage();
-
-
+    const {city, coordinates, weather, updateCity, updateCoordinates} = useWeatherPage();
 
     return(
-        <input type="text" onChange={e => setCity(e.target.value)} value={city} />
+        <div>
+            <InputField label={'Поиск по названию города'} onButtonClick={updateCity} />
+            <InputField label={'Поиск по координатам'} onButtonClick={updateCoordinates} />
+            <CurrentLocation headderText={city} coordinates={coordinates}/>
+            <WeatherInfo weather={weather} />
+        </div>
     )
 }
