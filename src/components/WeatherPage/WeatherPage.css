@@ -1,0 +1,20 @@
+/* Центрируем основной блок на странице */
+.weather-page {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Обертка для результатов (CurrentLocation + WeatherInfo) */
+/* Это тот div, который внутри условия {coordinates && ...} */
+.weather-results-container {
+  margin-top: 30px;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

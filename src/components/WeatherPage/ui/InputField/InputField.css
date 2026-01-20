@@ -1,0 +1,50 @@
+/* InputField.css */
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.input-field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  margin-left: 4px;
+}
+
+.input-field input {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.input-field input:focus {
+  outline: none;
+  border-color: #007aff; /* Синий акцент */
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+.input-field button {
+  padding: 12px;
+  margin-top: 5px;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.input-field button:hover {
+  background-color: #0056b3;
+}
+
+.input-field button:active {
+  transform: scale(0.98);
+}

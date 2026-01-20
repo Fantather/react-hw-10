@@ -1,13 +1,13 @@
 import './CurrentLocation.css'
 
-export default function CurrentLocation({headderText, coordinates})
+export default function CurrentLocation({title, coordinates})
 {
     const {latitude, longitude} = coordinates;
     return(
         <section className='current-location'>
-            <header>
-                {headderText}
-            </header>
+            <h2>
+                {title}
+            </h2>
             <div>
                 <span>
                     <span>Широта</span>

@@ -7,17 +7,18 @@ export const useWeatherPage = () => {
     const [city, setCity] = useState("");
     const [isUseUserCoordinates, setIsUseUserCoordinates] = useState(false);
 
-    const {data: coordinates} = useCityCoordinates(city);
+    const {data: cityCoordinates} = useCityCoordinates(city);
     const [userCoordinates, setUserCoordinates] = useState({});
 
-    const locationToFetch = isUseUserCoordinates ? userCoordinates: coordinates;
-    const weather = useCurrentWeather(locationToFetch).data?.current_weather;
+    const coordinates = isUseUserCoordinates ? userCoordinates : cityCoordinates;
+    const weather = useCurrentWeather(coordinates).data?.current_weather;
 
 
     // Принимает координаты пользователя, валидирует их и переключает код на поиск по пользовательским координатам
-    function updateCoordinates(newCoordinates)
+    function updateCoordinates(stringCoordinates)
     {
-        if(isCoordinatesInvalid(newCoordinates)) return;
+        const newCoordinates = parseCoordinates(stringCoordinates);
+        if(!newCoordinates || isCoordinatesInvalid(newCoordinates)) return;
         
         setUserCoordinates(newCoordinates);
         setIsUseUserCoordinates(true);
@@ -42,5 +43,14 @@ export const useWeatherPage = () => {
         return latitude < minLatitude || latitude > maxLatitude || longitude < minLongitude || longitude > maxLongitude;
     }
 
-    return {city, coordinates, weather, updateCity, updateCoordinates};
+    // Вспомогательная функция для парсинга строки
+    function parseCoordinates(stringCoordinates)
+    {
+        const [lat, lon] = stringCoordinates.split(' ').map(Number);
+
+        if(isNaN(lat) || isNaN(lon)) return undefined;
+        return {latitude: lat, longitude: lon};
+    }
+
+    return {city, coordinates, weather, isUseUserCoordinates, updateCity, updateCoordinates};
 }

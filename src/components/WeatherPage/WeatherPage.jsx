@@ -18,18 +18,23 @@ import './WeatherPage.css'
 import { useWeatherPage } from './hooks/useWeatherPage';
 
 import InputField from './ui/InputField/InputField';
+import CurrentLocation from './ui/CurrentLocation/CurrentLocation';
 import WeatherInfo from './ui/WeatherInfo/WeatherInfo';
 
 export default function WeatherPage()
 {
-    const {city, coordinates, weather, updateCity, updateCoordinates} = useWeatherPage();
-
+    const {city, coordinates, weather, isUseUserCoordinates, updateCity, updateCoordinates} = useWeatherPage();
+    const title = isUseUserCoordinates ? "Погода по координатам" : city;
     return(
-        <div>
-            <InputField label={'Поиск по названию города'} onButtonClick={updateCity} />
-            <InputField label={'Поиск по координатам'} onButtonClick={updateCoordinates} />
-            <CurrentLocation headderText={city} coordinates={coordinates}/>
-            <WeatherInfo weather={weather} />
+        <div className='weather-page'>
+            <InputField label={'Поиск по названию города'} initValue='Одесса' onButtonClick={updateCity} />
+            <InputField label={'Поиск по координатам'} initValue='50.45466 30.5238' onButtonClick={updateCoordinates} />
+            {coordinates && 
+                <div className='weather-results-container'>
+                    <CurrentLocation title={title} coordinates={coordinates}/>
+                    <WeatherInfo weather={weather} />
+                </div>
+            }
         </div>
     )
 }

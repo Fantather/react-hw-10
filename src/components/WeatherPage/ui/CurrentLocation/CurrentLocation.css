@@ -1,0 +1,49 @@
+/* CurrentLocation.css */
+
+.current-location {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px 12px 0 0; /* Закругляем только верх */
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0; /* Разделитель с погодой */
+}
+
+/* Название города / Заголовок */
+.current-location h2 {
+  margin: 0 0 15px 0;
+  font-size: 28px;
+  color: #222;
+  font-weight: 700;
+}
+
+/* Контейнер для координат */
+.current-location > div {
+  display: flex;
+  justify-content: center;
+  gap: 30px; /* Расстояние между широтой и долготой */
+}
+
+/* Блок одной координаты (span внутри div) */
+.current-location > div > span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Слово "Широта"/"Долгота" */
+.current-location > div > span > span:first-child {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+/* Значение координат */
+.current-location > div > span > span:last-child {
+  font-size: 18px;
+  font-weight: 500;
+  color: #444;
+  font-feature-settings: "tnum"; /* Моноширинные цифры для красоты */
+}
